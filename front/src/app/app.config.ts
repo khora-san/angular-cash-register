@@ -1,10 +1,11 @@
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { ApplicationConfig, LOCALE_ID, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
+import { authInterceptor } from './auth/auth-interceptor';
 
 // Formats français pour les pipes date / currency ("28 septembre", "8,50 €")
 registerLocaleData(localeFr);
@@ -13,8 +14,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([authInterceptor])),
     { provide: LOCALE_ID, useValue: 'fr' },
-    // TODO étape 2 : brancher l'intercepteur d'authentification
   ],
 };

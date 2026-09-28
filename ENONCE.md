@@ -220,10 +220,10 @@ Faites les étapes **dans l'ordre** : chacune s'appuie sur la précédente.
 
 ### Étape 1 — Mise en place
 
-- [ ] Fournir `HttpClient` dans `app.config.ts`.
-- [ ] Générer deux composants « pages » : `LoginPage` et `CaissePage`.
-- [ ] Déclarer les routes : `/login`, `/caisse`. L'URL vide et toute URL inconnue redirigent vers `/caisse`.
-- [ ] Supprimer le message d'accueil de `app.ts`.
+- [x] Fournir `HttpClient` dans `app.config.ts`.
+- [x] Générer deux composants « pages » : `LoginPage` et `CaissePage`.
+- [x] Déclarer les routes : `/login`, `/caisse`. L'URL vide et toute URL inconnue redirigent vers `/caisse`.
+- [x] Supprimer le message d'accueil de `app.ts`.
 
 ✅ **Validation** : http://localhost:4200/login et http://localhost:4200/caisse affichent chacune leur page.
 
@@ -231,7 +231,7 @@ Faites les étapes **dans l'ordre** : chacune s'appuie sur la précédente.
 
 ### Étape 2 — Authentification
 
-- [ ] **`AuthService`**
+- [x] **`AuthService`**
   - `login(login, password)` appelle `POST /api/auth/login` et mémorise le jeton reçu dans un
     `signal` **et** dans le `sessionStorage` (pour rester connecté si on recharge la page).
   - `isLoggedIn` : un `computed` qui indique si un jeton est présent.

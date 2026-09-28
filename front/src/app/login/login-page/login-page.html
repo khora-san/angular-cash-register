@@ -1,1 +1,19 @@
-<p>Login page — coming in step 2.</p>
+<form class="card" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h1>YummyComponents</h1>
+
+    <div class="form-field">
+        <label for="login">Login</label>
+        <input id="login" formControlName="login"/>
+    </div>
+
+    <div class="form-field">
+        <label for="password">Password</label>
+        <input id="password" type="password" formControlName="password"/>
+    </div>
+
+    @if (errorMessage()) {
+        <p class="alert alert-error">{{ errorMessage() }}</p>
+    }
+
+    <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Log in</button>
+</form>
