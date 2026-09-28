@@ -236,12 +236,12 @@ Faites les étapes **dans l'ordre** : chacune s'appuie sur la précédente.
     `signal` **et** dans le `sessionStorage` (pour rester connecté si on recharge la page).
   - `isLoggedIn` : un `computed` qui indique si un jeton est présent.
   - `logout()` appelle `POST /api/auth/logout` puis oublie le jeton.
-- [ ] **Page de connexion** : formulaire réactif (identifiant + mot de passe, obligatoires).
+- [x] **Page de connexion** : formulaire réactif (identifiant + mot de passe, obligatoires).
   - En cas de succès → redirection vers `/caisse`.
   - En cas d'échec (401) → message « Identifiant ou mot de passe incorrect ».
   - Si le serveur ne répond pas → un message qui l'indique.
-- [ ] **Guard** : `/caisse` n'est accessible qu'aux utilisateurs connectés, sinon redirection vers `/login`.
-- [ ] **Intercepteur** : ajoute l'en-tête `Authorization: Bearer <jeton>` à chaque requête. Si une réponse
+- [x] **Guard** : `/caisse` n'est accessible qu'aux utilisateurs connectés, sinon redirection vers `/login`.
+- [x] **Intercepteur** : ajoute l'en-tête `Authorization: Bearer <jeton>` à chaque requête. Si une réponse
   est un **401** (hors login), il efface le jeton et renvoie vers `/login`.
 
 ✅ **Validation** : impossible d'afficher `/caisse` sans se connecter ; avec `caisse` / `caisse` on arrive sur la caisse ;

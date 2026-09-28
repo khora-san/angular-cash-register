@@ -1,0 +1,13 @@
+section {
+    margin-bottom: 1.5rem;
+}
+
+section h2 {
+    margin-bottom: 0.75rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+}

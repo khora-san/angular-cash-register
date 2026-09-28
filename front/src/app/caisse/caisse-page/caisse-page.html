@@ -1,1 +1,10 @@
-<p>Caisse page — coming in step 3.</p>
+@for (category of categories; track category.code) {
+    <section>
+        <h2>{{ category.icon }} {{ category.label }}</h2>
+        <div class="grid">
+            @for (product of productsIn(category.code); track product.id) {
+                <app-product-card [product]="product" [availableStock]="product.stock"/>
+            }
+        </div>
+    </section>
+}
