@@ -1,7 +1,12 @@
 import { Routes } from '@angular/router';
 
-// TODO étape 1 : déclarer les routes
-//   /login  -> page de connexion
-//   /caisse -> page de caisse (réservée aux utilisateurs connectés, étape 2)
-//   ''  et toute autre URL -> redirection vers /caisse
-export const routes: Routes = [];
+import { CaissePage } from './caisse/caisse-page/caisse-page';
+import { LoginPage } from './login/login-page/login-page';
+
+// TODO étape 2 : protéger /caisse avec un guard
+export const routes: Routes = [
+  { path: 'login', component: LoginPage },
+  { path: 'caisse', component: CaissePage },
+  { path: '', redirectTo: 'caisse', pathMatch: 'full' },
+  { path: '**', redirectTo: 'caisse' },
+];
