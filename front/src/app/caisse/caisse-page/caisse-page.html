@@ -1,3 +1,8 @@
+<header class="topbar">
+    <span class="brand">🍔 YummyComponents</span>
+    <span class="today-total">Total du jour : {{ todayTotal() | euros }}</span>
+</header>
+
 <div class="layout">
     <div class="catalog">
         <section>
@@ -27,10 +32,15 @@
         }
     </div>
 
-    <app-note-panel (productsChanged)="loadProducts()"/>
+    <div class="sidebar">
+        <app-note-panel (orderSubmitted)="loadProducts(); loadDailyTotals()"/>
+        <app-daily-totals [dailyTotals]="dailyTotals()"/>
+    </div>
+
 </div>
 <!-- Picker conditional return -->
 @if (openFormula(); as formula) {
     <app-formula-picker [formula]="formula" [products]="products()" (closed)="openFormula.set(null)"/>
 }
+
 

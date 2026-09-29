@@ -15,7 +15,7 @@ export class NotePanel {
   protected readonly noteService = inject(Note);
   private readonly ordersService = inject(Orders);
 
-  productsChanged = output<void>();
+  orderSubmitted = output<void>();
 
   paying = signal(false);
   lastPayment = signal<Order | null>(null);
@@ -30,7 +30,7 @@ export class NotePanel {
   }
 
   /**
-   * Pays the note. Emits `productsChanged` on both success and error, since a
+   * Pays the note. Emits `orderSubmitted` on both success and error, since a
    * 409 (insufficient stock) means the catalog's stock has already moved.
    */
   pay() {
@@ -41,12 +41,12 @@ export class NotePanel {
         this.paying.set(false);
         this.lastPayment.set(order);
         this.noteService.clear();
-        this.productsChanged.emit();
+        this.orderSubmitted.emit();
       },
       error: (err: HttpErrorResponse) => {
         this.paying.set(false);
         this.paymentError.set(err.error?.message ?? 'Erreur lors du paiement');
-        this.productsChanged.emit();
+        this.orderSubmitted.emit();
       },
     });
   }

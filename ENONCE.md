@@ -312,14 +312,14 @@ les stocks affichés de ces 3 produits diminuent de 1.
 
 ### Étape 6 — Le paiement
 
-- [ ] **`OrderService.pay(request)`** : `POST /api/orders`.
-- [ ] Convertir la note en `OrderRequest` (produits + formules, avec seulement les identifiants).
-- [ ] Bouton **« Payer 40,00 € »**, désactivé si la note est vide ou si un paiement est en cours.
-- [ ] Après un paiement réussi :
+- [x] **`OrderService.pay(request)`** : `POST /api/orders`.
+- [x] Convertir la note en `OrderRequest` (produits + formules, avec seulement les identifiants).
+- [x] Bouton **« Payer 40,00 € »**, désactivé si la note est vide ou si un paiement est en cours.
+- [x] Après un paiement réussi :
   - afficher « Note n°X payée : Y € » ;
   - **vider** la note ;
   - **recharger** les produits (les stocks ont changé) et les totaux par jour.
-- [ ] En cas d'erreur (ex. **409** stock insuffisant) : afficher le `message` renvoyé par le serveur et
+- [x] En cas d'erreur (ex. **409** stock insuffisant) : afficher le `message` renvoyé par le serveur et
   recharger les produits.
 
 ✅ **Validation** : après paiement, les stocks affichés ont diminué. Pour provoquer un 409 : mettez 3
@@ -327,12 +327,12 @@ limonades dans la note, payez 1 limonade depuis un second onglet, puis payez dan
 
 ### Étape 7 — Les recettes
 
-- [ ] Charger `GET /api/orders/daily-totals`.
-- [ ] Un composant **`DailyTotals`** : un tableau jour / nombre de notes / total, pour **chaque jour**
+- [x] Charger `GET /api/orders/daily-totals`.
+- [x] Un composant **`DailyTotals`** : un tableau jour / nombre de notes / total, pour **chaque jour**
   (la base de départ contient déjà l'historique des 3 jours précédents). La ligne du jour est mise en
   évidence.
-- [ ] Le **total du jour** est affiché en permanence dans l'en-tête de la caisse.
-- [ ] Les deux se mettent à jour après chaque paiement.
+- [x] Le **total du jour** est affiché en permanence dans l'en-tête de la caisse.
+- [x] Les deux se mettent à jour après chaque paiement.
 
 > 💡 `{{ day | date: 'EEEE d MMMM' }}` → « dimanche 27 septembre ».
 > Le total du jour est un `computed` sur la liste des totaux.
