@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Note } from '../../services/note';
+import { Note, NoteLine } from '../../services/note';
 import { EurosPipe } from '../../shared/euros-pipe';
 
 @Component({
@@ -10,4 +10,12 @@ import { EurosPipe } from '../../shared/euros-pipe';
 })
 export class NotePanel {
   protected readonly noteService = inject(Note);
+
+  /**
+   * Unique tracking key for @for: product lines have no line-level id, so we
+   * derive one from the product id; formula lines already carry a real id.
+   */
+  lineKey(line: NoteLine): string {
+    return line.kind === 'product' ? `product-${line.product.id}` : line.id;
+  }
 }

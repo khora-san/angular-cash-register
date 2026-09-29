@@ -1,5 +1,19 @@
 <div class="layout">
     <div class="catalog">
+        <section>
+            <h2>⭐ Formules</h2>
+            <div class="grid">
+                @for (formula of formulas(); track formula.id) {
+                    <button class="card formula-card" [disabled]="!isFormulaAvailable(formula)"
+                            (click)="openFormula.set(formula)">
+                        <span class="formula-icons">{{ formulaMainIcon(formula) }} {{ drinkIcon }} {{ dessertIcon }}</span>
+                        <span class="name">{{ formula.name }}</span>
+                        <span class="price">{{ formula.price | euros }}</span>
+                    </button>
+                }
+            </div>
+        </section>
+
         @for (category of categories; track category.code) {
             <section>
                 <h2>{{ category.icon }} {{ category.label }}</h2>
@@ -15,3 +29,8 @@
 
     <app-note-panel/>
 </div>
+<!-- Picker conditional return -->
+@if (openFormula(); as formula) {
+    <app-formula-picker [formula]="formula" [products]="products()" (closed)="openFormula.set(null)"/>
+}
+

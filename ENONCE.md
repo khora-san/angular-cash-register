@@ -273,14 +273,14 @@ visibles mais désactivés.
 
 La note est construite **dans le navigateur** : rien n'est envoyé au serveur avant le paiement.
 
-- [ ] **`NoteService`** (état partagé, avec des signals) :
+- [x] **`NoteService`** (état partagé, avec des signals) :
   - la liste des lignes de la note ;
   - `total` : un `computed` ;
   - ajouter un produit (cliquer deux fois sur le même produit donne **une** ligne de quantité 2) ;
   - diminuer la quantité, supprimer une ligne, vider la note.
-- [ ] Un composant **`NotePanel`** (le ticket) : chaque ligne avec son libellé, son prix, sa quantité
+- [x] Un composant **`NotePanel`** (le ticket) : chaque ligne avec son libellé, son prix, sa quantité
   (boutons − et +), son sous-total et un bouton de suppression ; le total en bas.
-- [ ] Le **stock affiché tient compte de la note** : si Cookie a un stock de 2 et que 2 cookies sont
+- [x] Le **stock affiché tient compte de la note** : si Cookie a un stock de 2 et que 2 cookies sont
   déjà dans la note, la carte Cookie affiche « Hors stock » et n'est plus cliquable. Le bouton « + »
   du ticket est désactivé dans ce cas.
 

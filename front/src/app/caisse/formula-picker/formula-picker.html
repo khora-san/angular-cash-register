@@ -1,0 +1,69 @@
+<div class="overlay" (click)="onCancel()">
+    <!-- Stops the click from bubbling to the overlay's onCancel() -->
+    <div class="card picker" (click)="$event.stopPropagation()">
+        <div class="header">
+            <h2>⭐ {{ formula().name }}</h2>
+            <span class="price">{{ formula().price | euros }}</span>
+        </div>
+
+
+        <h3>Plat</h3>
+        <div class="options">
+            @for (product of mainCandidates(); track product.id) {
+                <button
+                        class="option"
+                        [class.selected]="selectedMain() === product"
+                        [disabled]="availableStock(product) <= 0"
+                        (click)="selectedMain.set(product)"
+                >
+                    <span class="option-name">{{ product.name }}</span>
+                    <span class="option-stock">
+  {{ availableStock(product) > 0 ? 'Stock : ' + availableStock(product) : 'Hors stock' }}
+</span>
+
+                </button>
+            }
+        </div>
+
+        <h3>Boisson</h3>
+        <div class="options">
+            @for (product of drinkCandidates(); track product.id) {
+                <button
+                        class="option"
+                        [class.selected]="selectedDrink() === product"
+                        [disabled]="availableStock(product) <= 0"
+                        (click)="selectedDrink.set(product)"
+                >
+                    <span class="option-name">{{ product.name }}</span>
+                    <span class="option-stock">
+  {{ availableStock(product) > 0 ? 'Stock : ' + availableStock(product) : 'Hors stock' }}
+</span>
+
+                </button>
+            }
+        </div>
+
+        <h3>Dessert</h3>
+        <div class="options">
+            @for (product of dessertCandidates(); track product.id) {
+                <button
+                        class="option"
+                        [class.selected]="selectedDessert() === product"
+                        [disabled]="availableStock(product) <= 0"
+                        (click)="selectedDessert.set(product)"
+                >
+                    <span class="option-name">{{ product.name }}</span>
+                    <span class="option-stock">
+  {{ availableStock(product) > 0 ? 'Stock : ' + availableStock(product) : 'Hors stock' }}
+</span>
+
+                </button>
+            }
+        </div>
+
+        <div class="actions">
+            <button class="btn btn-ghost" (click)="onCancel()">Annuler</button>
+            <button class="btn btn-primary" [disabled]="!canConfirm()" (click)="onConfirm()">Ajouter à la note</button>
+        </div>
+    </div>
+</div>

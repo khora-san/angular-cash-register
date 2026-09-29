@@ -18,3 +18,22 @@ section h2 {
     gap: 1.5rem;
     align-items: start;
 }
+
+.formula-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+    width: 100%;
+    border: 2px solid var(--color-accent);
+    text-align: left;
+}
+
+.formula-card .price {
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+.formula-card:disabled {
+    opacity: 0.5;
+}
