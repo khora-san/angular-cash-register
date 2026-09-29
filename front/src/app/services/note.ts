@@ -1,5 +1,5 @@
 import { computed, Service, signal } from '@angular/core';
-import { Formula, Product } from '../models';
+import { Formula, OrderRequest, Product } from '../models';
 
 export interface ProductLine {
   kind: 'product';
@@ -117,5 +117,26 @@ export class Note {
     this.linesSignal.update((lines) =>
       lines.filter((line) => !(line.kind === 'formula' && line.id === lineId)),
     );
+  }
+
+  /**
+   * Converts the note to the wire format expected by POST /api/orders —
+   * only ids and quantities, the server recomputes prices.
+   */
+  toOrderRequest(): OrderRequest {
+    const products = this.lines()
+      .filter((line): line is ProductLine => line.kind === 'product')
+      .map((line) => ({ productId: line.product.id, quantity: line.quantity }));
+
+    const formulas = this.lines()
+      .filter((line): line is FormulaLine => line.kind === 'formula')
+      .map((line) => ({
+        formulaId: line.formula.id,
+        mainId: line.main.id,
+        drinkId: line.drink.id,
+        dessertId: line.dessert.id,
+      }));
+
+    return { products, formulas };
   }
 }

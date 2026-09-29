@@ -27,7 +27,7 @@
         }
     </div>
 
-    <app-note-panel/>
+    <app-note-panel (productsChanged)="loadProducts()"/>
 </div>
 <!-- Picker conditional return -->
 @if (openFormula(); as formula) {

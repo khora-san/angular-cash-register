@@ -294,15 +294,15 @@ pas mettre dans la note plus que le stock.
 
 ### Étape 5 — Les formules
 
-- [ ] Afficher les 2 formules (nom, composition, prix) au-dessus du catalogue.
-- [ ] Un clic sur une formule ouvre un composant **`FormulaPicker`** (une fenêtre par-dessus la page) :
+- [x] Afficher les 2 formules (nom, composition, prix) au-dessus du catalogue.
+- [x] Un clic sur une formule ouvre un composant **`FormulaPicker`** (une fenêtre par-dessus la page) :
   - choisir **un** produit de la catégorie principale (burger **ou** panini selon la formule),
     **une** boisson et **un** dessert ;
   - les produits indisponibles sont visibles mais non sélectionnables ;
   - « Ajouter à la note » n'est actif que lorsque les 3 choix sont faits ; « Annuler » ferme la fenêtre.
-- [ ] Dans la note, une formule est **une ligne** : son nom, le détail des 3 produits choisis et son prix fixe.
-- [ ] Les 3 produits d'une formule **comptent dans les stocks** réservés par la note.
-- [ ] Une formule est désactivée si l'une de ses 3 catégories n'a plus aucun produit disponible.
+- [x] Dans la note, une formule est **une ligne** : son nom, le détail des 3 produits choisis et son prix fixe.
+- [x] Les 3 produits d'une formule **comptent dans les stocks** réservés par la note.
+- [x] Une formule est désactivée si l'une de ses 3 catégories n'a plus aucun produit disponible.
 
 ✅ **Validation** : Formule Burger (Bacon Burger, Limonade, Brownie) apparaît dans la note à 13,50 € et
 les stocks affichés de ces 3 produits diminuent de 1.

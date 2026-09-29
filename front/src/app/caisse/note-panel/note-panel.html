@@ -45,6 +45,18 @@
             <span>Total</span>
             <span>{{ noteService.total() | euros }}</span>
         </div>
+
+        <button class="btn btn-success btn-lg" [disabled]="paying()" (click)="pay()">
+            💳 Payer {{ noteService.total() | euros }}
+        </button>
+    }
+
+    @if (lastPayment(); as order) {
+        <p class="alert alert-success">Note n°{{ order.id }} payée : {{ order.total | euros }}</p>
+    }
+
+    @if (paymentError(); as message) {
+        <p class="alert alert-error">{{ message }}</p>
     }
 
 </div>
