@@ -13,3 +13,6 @@ yummy.db
 node_modules/
 dist/
 .angular/
+
+# Local-only files
+ENONCE.md

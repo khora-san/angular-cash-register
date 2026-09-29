@@ -1,22 +1,21 @@
 # YummyComponents — TP caisse enregistreuse (CDA)
 
-TP Angular 22 : la caisse enregistreuse d'un food truck. Le serveur Java est fourni, les étudiants
-réalisent le front. Le sujet complet est dans **[ENONCE.md](ENONCE.md)**.
+TP Angular 22 : la caisse enregistreuse d'un food truck. Le serveur Java est fourni ; le sujet
+original demandait aux étudiants de réaliser le front. Dans ce dépôt, `front/` contient une
+implémentation personnelle complète du sujet (voir la note en bas de page et `front/README.md`).
 
 ## Structure
 
 ```text
-tp-caisse/
-├── pom.xml, mvnw, mvnw.cmd, src/   Serveur Java (Spring Boot 4 + SQLite) — fourni aux étudiants
-├── ENONCE.md                       Sujet du TP
-├── docs/                           Maquettes (captures du corrigé) utilisées dans l'énoncé
-├── front/                          Projet Angular 22 de départ pour les étudiants
-└── corrige/                        Corrigé : projet Angular 22 complet et indépendant
+angular-cash-register/
+├── pom.xml, mvnw, mvnw.cmd, src/   Serveur Java (Spring Boot 4 + SQLite) — fourni
+├── docs/                           Maquettes utilisées comme référence visuelle
+└── front/                          Projet Angular 22 — implémentation complète
 ```
 
-> **Avant de distribuer le TP, supprimez le dossier `corrige/`.**
-> Le corrigé existe aussi chiffré dans `corrige.7z` (7z AES-256, noms de fichiers chiffrés, sans
-> `node_modules` : faire `npm install` après extraction). Le mot de passe n'est pas dans le dépôt.
+> Le corrigé de référence existe chiffré dans `corrige.7z` (7z AES-256, noms de fichiers
+> chiffrés, sans `node_modules` : faire `npm install` après extraction). Le mot de passe
+> n'est pas dans le dépôt.
 
 ## Prérequis
 
@@ -38,7 +37,7 @@ Variante sans Maven au quotidien : `mvnw.cmd package` puis `java -jar target/cai
 ## Lancer le front
 
 ```bash
-cd front      # ou: cd corrige
+cd front
 npm install
 npm start     # http://localhost:4200
 ```
@@ -74,3 +73,16 @@ Code dans `src/main/java/fr/yummycomponents/caisse/` :
 
 Les montants sont des entiers en **centimes** côté base comme côté API. Le serveur recalcule les prix :
 le client n'envoie que des identifiants et des quantités.
+
+## Project status
+
+This repository started from the official CDA training brief (Diginamic) for a
+food-truck cash register exercise — a provided Java/Spring Boot server plus an
+Angular starter. The original assignment brief (`ENONCE.md`) is kept locally but
+no longer tracked here, since its checklist described an in-progress student
+assignment rather than the current state of this repo.
+
+`front/` now contains a completed personal implementation of all 8 required
+steps plus several of the suggested bonus features, built interactively with
+pair-programming guidance. See `front/README.md` for notes on specific
+implementation choices.
