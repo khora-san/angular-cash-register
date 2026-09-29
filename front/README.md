@@ -1,6 +1,7 @@
-# Caisse YummyComponents — projet de départ
+# Caisse YummyComponents
 
-Le sujet est dans **[../ENONCE.md](../ENONCE.md)**.
+Implémentation complète du TP décrit dans [../README.md](../README.md) (les 8 étapes obligatoires
+plus plusieurs bonus).
 
 1. Lancer le serveur Java à la racine du dépôt : `mvnw.cmd spring-boot:run` (Windows) ou `./mvnw spring-boot:run`.
 2. Dans ce dossier :
