@@ -8,42 +8,38 @@ import { FormulaPicker } from '../formula-picker/formula-picker';
 import { EurosPipe } from '../../shared/euros-pipe';
 import { Orders } from '../../services/orders';
 import { formatDate } from '@angular/common';
-import {DailyTotals} from "../daily-totals/daily-totals";
+import { DailyTotals } from '../daily-totals/daily-totals';
+import { Router } from '@angular/router';
+import { Auth } from '../../auth/auth';
+import {Brand} from "../../shared/brand/brand";
 
 @Component({
-  imports: [ProductCard, NotePanel, FormulaPicker, EurosPipe, DailyTotals],
+  imports: [ProductCard, NotePanel, FormulaPicker, EurosPipe, DailyTotals, Brand],
   selector: 'app-caisse-page',
   styleUrl: './caisse-page.css',
   templateUrl: './caisse-page.html',
 })
 export class CaissePage {
   private readonly catalogService = inject(Catalog);
+  protected readonly noteService = inject(Note);
+  private readonly ordersService = inject(Orders);
+  private readonly authService = inject(Auth);
+  private readonly router = inject(Router);
 
   products = signal<Product[]>([]);
+  formulas = signal<Formula[]>([]);
+  openFormula = signal<Formula | null>(null);
+  dailyTotals = signal<DailyTotal[]>([]);
+  todayTotal = computed(() => this.dailyTotals().find((dt) => dt.day === this.today)?.total ?? 0);
 
   protected readonly categories = CATEGORIES;
-
-  protected readonly noteService = inject(Note);
-
-  formulas = signal<Formula[]>([]);
-
-  openFormula = signal<Formula | null>(null);
-
   protected readonly drinkIcon = CATEGORIES.find((c) => c.code === 'BOISSON')!.icon;
-
   protected readonly dessertIcon = CATEGORIES.find((c) => c.code === 'DESSERT')!.icon;
+  protected readonly today = formatDate(new Date(), 'yyyy-MM-dd', 'fr');
 
   availableStock(product: Product): number {
     return product.stock - (this.noteService.quantityByProduct().get(product.id) ?? 0);
   }
-
-  private readonly ordersService = inject(Orders);
-
-  dailyTotals = signal<DailyTotal[]>([]);
-
-  protected readonly today = formatDate(new Date(), 'yyyy-MM-dd', 'fr');
-
-  todayTotal = computed(() => this.dailyTotals().find((dt) => dt.day === this.today)?.total ?? 0);
 
   constructor() {
     this.loadProducts();
@@ -81,5 +77,12 @@ export class CaissePage {
     this.ordersService
       .getDailyTotals()
       .subscribe((dailyTotals) => this.dailyTotals.set(dailyTotals));
+  }
+
+  logout() {
+    this.authService.logout().subscribe(() => {
+      this.noteService.clear();
+      this.router.navigateByUrl('/login');
+    });
   }
 }

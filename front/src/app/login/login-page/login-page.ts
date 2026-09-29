@@ -3,10 +3,11 @@ import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angula
 import { Auth } from '../../auth/auth';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Brand } from '../../shared/brand/brand';
 
 
 @Component({
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, Brand],
   selector: 'app-login-page',
   styleUrl: './login-page.css',
   templateUrl: './login-page.html',

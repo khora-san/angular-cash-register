@@ -1,0 +1,12 @@
+:host {
+    --brand-yummy-color: var(--color-text);
+    --brand-components-color: var(--color-primary);
+}
+
+.brand-yummy {
+    color: var(--brand-yummy-color);
+}
+
+.brand-components {
+    color: var(--brand-components-color);
+}

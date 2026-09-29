@@ -48,9 +48,34 @@ section h2 {
     margin-bottom: 1.5rem;
 }
 
-.topbar .today-total {
-    color: var(--color-accent);
+.topbar app-brand {
+    --brand-yummy-color: #fff;
+    --brand-components-color: var(--color-accent);
+}
+
+.topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.today-total {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.today-total .label {
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+}
+
+.today-total .amount {
+    font-size: 1.3rem;
     font-weight: 700;
+    color: var(--color-accent);
 }
 
 .layout {
@@ -62,4 +87,13 @@ section h2 {
     flex-direction: column;
     gap: 1.5rem;
 }
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 1.7rem;
+    font-weight: 700;
+}
+
 

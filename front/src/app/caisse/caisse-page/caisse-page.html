@@ -1,6 +1,12 @@
 <header class="topbar">
-    <span class="brand">🍔 YummyComponents</span>
-    <span class="today-total">Total du jour : {{ todayTotal() | euros }}</span>
+    <span class="brand">🍔 <app-brand/></span>
+    <div class="topbar-actions">
+    <span class="today-total">
+      <span class="label">TOTAL DU JOUR</span>
+      <span class="amount">{{ todayTotal() | euros }}</span>
+    </span>
+        <button class="btn btn-ghost" (click)="logout()">Se déconnecter</button>
+    </div>
 </header>
 
 <div class="layout">
