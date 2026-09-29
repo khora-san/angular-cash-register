@@ -14,6 +14,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class NotePanel {
   protected readonly noteService = inject(Note);
   private readonly ordersService = inject(Orders);
+  private clearMessageTimer?: ReturnType<typeof setTimeout>;
 
   orderSubmitted = output<void>();
 
@@ -42,6 +43,8 @@ export class NotePanel {
         this.lastPayment.set(order);
         this.noteService.clear();
         this.orderSubmitted.emit();
+        clearTimeout(this.clearMessageTimer);
+        this.clearMessageTimer = setTimeout(() => this.lastPayment.set(null), 4000);
       },
       error: (err: HttpErrorResponse) => {
         this.paying.set(false);
