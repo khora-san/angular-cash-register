@@ -3,6 +3,7 @@
         [class.sold-out]="availableStock() <= 0"
         [disabled]="availableStock() <= 0"
         (click)="onSelect()"
+        [class.selected]="inNote()"
 >
     <span class="icon">{{ icon() }}</span>
     <span class="name">{{ product().name }}</span>

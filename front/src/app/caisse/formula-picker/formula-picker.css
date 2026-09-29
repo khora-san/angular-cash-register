@@ -38,8 +38,8 @@
 }
 
 .option.selected {
-    border-color: var(--color-primary);
-    background: var(--color-accent-light);
+    border-color: var(--color-success);
+    background: rgb(42 157 143 / 0.12);
 }
 
 .option-stock {

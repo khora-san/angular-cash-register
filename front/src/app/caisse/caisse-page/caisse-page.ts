@@ -11,7 +11,7 @@ import { formatDate } from '@angular/common';
 import { DailyTotals } from '../daily-totals/daily-totals';
 import { Router } from '@angular/router';
 import { Auth } from '../../auth/auth';
-import {Brand} from "../../shared/brand/brand";
+import { Brand } from '../../shared/brand/brand';
 
 @Component({
   imports: [ProductCard, NotePanel, FormulaPicker, EurosPipe, DailyTotals, Brand],
@@ -84,5 +84,9 @@ export class CaissePage {
       this.noteService.clear();
       this.router.navigateByUrl('/login');
     });
+  }
+
+  isInNote(product: Product): boolean {
+    return (this.noteService.quantityByProduct().get(product.id) ?? 0) > 0;
   }
 }

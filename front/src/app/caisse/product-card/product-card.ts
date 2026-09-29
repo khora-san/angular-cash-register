@@ -11,8 +11,10 @@ import { EurosPipe } from '../../shared/euros-pipe';
 export class ProductCard {
   product = input.required<Product>();
   availableStock = input.required<number>();
-  selected = output<Product>();
+  inNote = input<boolean>(false);
   icon = computed(() => CATEGORIES.find((c) => c.code === this.product().category)!.icon);
+
+  selected = output<Product>();
 
   onSelect() {
     this.selected.emit(this.product());

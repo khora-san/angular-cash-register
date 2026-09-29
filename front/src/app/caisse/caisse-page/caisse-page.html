@@ -31,7 +31,7 @@
                 <div class="grid">
                     @for (product of productsIn(category.code); track product.id) {
                         <app-product-card [product]="product" [availableStock]="availableStock(product)"
-                                          (selected)="noteService.add($event)"/>
+                                          (selected)="noteService.add($event)" [inNote]="isInNote(product)"/>
                     }
                 </div>
             </section>

@@ -8,6 +8,9 @@ import { EurosPipe } from '../../shared/euros-pipe';
   selector: 'app-formula-picker',
   styleUrl: './formula-picker.css',
   templateUrl: './formula-picker.html',
+  host: {
+    '(document:keydown.escape)': 'onCancel()',
+  },
 })
 export class FormulaPicker {
   formula = input.required<Formula>();
