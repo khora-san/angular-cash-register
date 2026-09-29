@@ -8,7 +8,7 @@
     <span class="name">{{ product().name }}</span>
     <span class="price">{{ product().price | euros }}</span>
     @if (availableStock() > 0) {
-        <span class="badge">{{ availableStock() }} en stock</span>
+        <span class="badge" [class.badge-warning]="availableStock() <= 3">{{ availableStock() }} en stock</span>
     } @else {
         <span class="badge badge-danger">Hors stock</span>
     }

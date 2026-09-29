@@ -7,7 +7,7 @@ Aujourd'hui, les commandes sont notées sur un carnet et les stocks comptés à 
 une **caisse enregistreuse web**, utilisable sur une tablette posée sur le comptoir.
 
 Le **serveur** (API REST en Java / Spring Boot + base SQLite) est **fourni** et déjà fonctionnel.
-Votre mission : développer l'**application Angular** de la caisse.
+Votre mission : développer l' **application Angular** de la caisse.
 
 ## Objectifs pédagogiques
 
@@ -52,12 +52,12 @@ L'application est servie sur **http://localhost:4200**.
 
 ### Ce qui vous est fourni dans `front/`
 
-| Fichier | Contenu |
-|---|---|
-| `src/app/models.ts` | Les **types TypeScript** des données de l'API + la constante `CATEGORIES` (libellés et icônes) |
-| `src/app/api.ts` | La constante `API_URL` (`http://localhost:8080/api`) |
-| `src/styles.css` | Des styles globaux prêts à l'emploi : `.btn`, `.btn-primary`, `.btn-success`, `.btn-ghost`, `.btn-lg`, `.btn-icon`, `.card`, `.badge`, `.badge-warning`, `.badge-danger`, `.alert`, `.alert-success`, `.alert-error`, `.form-field`, `.field-error` et des variables CSS (`--color-primary`, `--color-accent`…) |
-| `src/app/app.config.ts` | La locale **française** est déjà configurée (`8,50 €`, `lundi 28 septembre`) |
+| Fichier                 | Contenu                                                                                                                                                                                                                                                                                                         |
+|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `src/app/models.ts`     | Les **types TypeScript** des données de l'API + la constante `CATEGORIES` (libellés et icônes)                                                                                                                                                                                                                  |
+| `src/app/api.ts`        | La constante `API_URL` (`http://localhost:8080/api`)                                                                                                                                                                                                                                                            |
+| `src/styles.css`        | Des styles globaux prêts à l'emploi : `.btn`, `.btn-primary`, `.btn-success`, `.btn-ghost`, `.btn-lg`, `.btn-icon`, `.card`, `.badge`, `.badge-warning`, `.badge-danger`, `.alert`, `.alert-success`, `.alert-error`, `.form-field`, `.field-error` et des variables CSS (`--color-primary`, `--color-accent`…) |
+| `src/app/app.config.ts` | La locale **française** est déjà configurée (`8,50 €`, `lundi 28 septembre`)                                                                                                                                                                                                                                    |
 
 Les composants générés avec `ng generate component` ont un fichier `.html` et un fichier `.css` séparés.
 
@@ -67,15 +67,15 @@ Les composants générés avec `ng generate component` ont un fichier `.html` et
 
 > ⚠️ **Tous les montants sont en centimes** : `850` signifie `8,50 €`.
 
-| Méthode | Route | Jeton ? | Description |
-|---|---|:---:|---|
-| `POST` | `/api/auth/login` | non | Connexion. Corps : `{ "login": "caisse", "password": "caisse" }` → `200 { "token": "…" }` ou `401` |
-| `POST` | `/api/auth/logout` | oui | Déconnexion (le jeton est invalidé) → `204` |
-| `GET` | `/api/products` | oui | Tous les produits, **y compris ceux hors stock** |
-| `GET` | `/api/formulas` | oui | Les formules |
-| `POST` | `/api/orders` | oui | **Paie** une note → `201` + la note enregistrée, `400` (note invalide), `409` (stock insuffisant) |
-| `GET` | `/api/orders/daily-totals` | oui | Total encaissé **pour chaque jour** (du plus récent au plus ancien) |
-| `POST` | `/api/reset` | non | **Remet la base dans son état initial** (produits, stocks, historique) |
+| Méthode | Route                      | Jeton ? | Description                                                                                        |
+|---------|----------------------------|:-------:|----------------------------------------------------------------------------------------------------|
+| `POST`  | `/api/auth/login`          |   non   | Connexion. Corps : `{ "login": "caisse", "password": "caisse" }` → `200 { "token": "…" }` ou `401` |
+| `POST`  | `/api/auth/logout`         |   oui   | Déconnexion (le jeton est invalidé) → `204`                                                        |
+| `GET`   | `/api/products`            |   oui   | Tous les produits, **y compris ceux hors stock**                                                   |
+| `GET`   | `/api/formulas`            |   oui   | Les formules                                                                                       |
+| `POST`  | `/api/orders`              |   oui   | **Paie** une note → `201` + la note enregistrée, `400` (note invalide), `409` (stock insuffisant)  |
+| `GET`   | `/api/orders/daily-totals` |   oui   | Total encaissé **pour chaque jour** (du plus récent au plus ancien)                                |
+| `POST`  | `/api/reset`               |   non   | **Remet la base dans son état initial** (produits, stocks, historique)                             |
 
 **Identifiants de la caisse** : login `caisse`, mot de passe `caisse`.
 
@@ -96,8 +96,20 @@ Sans jeton valide, le serveur répond **401**. Les jetons sont gardés en mémoi
 
 ```json
 [
-  { "id": 1, "name": "Classic Burger", "category": "BURGER", "price": 850, "stock": 15 },
-  { "id": 4, "name": "Veggie Burger",  "category": "BURGER", "price": 950, "stock": 0 }
+  {
+    "id": 1,
+    "name": "Classic Burger",
+    "category": "BURGER",
+    "price": 850,
+    "stock": 15
+  },
+  {
+    "id": 4,
+    "name": "Veggie Burger",
+    "category": "BURGER",
+    "price": 950,
+    "stock": 0
+  }
 ]
 ```
 
@@ -107,8 +119,18 @@ Catégories possibles : `BURGER`, `PANINI`, `BOISSON`, `DESSERT`.
 
 ```json
 [
-  { "id": 1, "name": "Formule Burger", "mainCategory": "BURGER", "price": 1350 },
-  { "id": 2, "name": "Formule Panini", "mainCategory": "PANINI", "price": 1050 }
+  {
+    "id": 1,
+    "name": "Formule Burger",
+    "mainCategory": "BURGER",
+    "price": 1350
+  },
+  {
+    "id": 2,
+    "name": "Formule Panini",
+    "mainCategory": "PANINI",
+    "price": 1050
+  }
 ]
 ```
 
@@ -119,10 +141,18 @@ Une formule = **un plat de la catégorie `mainCategory` + une boisson + un desse
 ```json
 {
   "products": [
-    { "productId": 2, "quantity": 2 }
+    {
+      "productId": 2,
+      "quantity": 2
+    }
   ],
   "formulas": [
-    { "formulaId": 1, "mainId": 3, "drinkId": 10, "dessertId": 12 }
+    {
+      "formulaId": 1,
+      "mainId": 3,
+      "drinkId": 10,
+      "dessertId": 12
+    }
   ]
 }
 ```
@@ -135,8 +165,16 @@ Réponse `201` :
   "createdAt": "2026-09-28 12:34:56",
   "total": 3250,
   "lines": [
-    { "label": "Cheese Burger", "quantity": 2, "unitPrice": 950 },
-    { "label": "Formule Burger (Bacon Burger, Limonade artisanale, Brownie)", "quantity": 1, "unitPrice": 1350 }
+    {
+      "label": "Cheese Burger",
+      "quantity": 2,
+      "unitPrice": 950
+    },
+    {
+      "label": "Formule Burger (Bacon Burger, Limonade artisanale, Brownie)",
+      "quantity": 1,
+      "unitPrice": 1350
+    }
   ]
 }
 ```
@@ -145,8 +183,16 @@ Réponse `201` :
 
 ```json
 [
-  { "day": "2026-09-28", "total": 3250, "orderCount": 1 },
-  { "day": "2026-09-27", "total": 4600, "orderCount": 2 }
+  {
+    "day": "2026-09-28",
+    "total": 3250,
+    "orderCount": 1
+  },
+  {
+    "day": "2026-09-27",
+    "total": 4600,
+    "orderCount": 2
+  }
 ]
 ```
 
@@ -155,7 +201,10 @@ Réponse `201` :
 En cas d'erreur (400, 401, 409), le corps de la réponse contient un champ `message` à afficher :
 
 ```json
-{ "status": 409, "message": "Stock insuffisant pour Cookie (reste 2)" }
+{
+  "status": 409,
+  "message": "Stock insuffisant pour Cookie (reste 2)"
+}
 ```
 
 Avec `HttpClient`, ce corps se trouve dans `error.error` (`HttpErrorResponse`).
@@ -179,8 +228,8 @@ Deux vues :
 1. **`/login`** : l'écran de connexion
 2. **`/caisse`** : la caisse (catalogue + note en cours + recettes)
 
-| Connexion | Caisse | Choix d'une formule |
-|---|---|---|
+| Connexion                             | Caisse                              | Choix d'une formule                   |
+|---------------------------------------|-------------------------------------|---------------------------------------|
 | ![Connexion](docs/maquette-login.png) | ![Caisse](docs/maquette-caisse.png) | ![Formule](docs/maquette-formule.png) |
 
 Les captures sont des **exemples** : vous êtes libres sur le design tant que les fonctionnalités
@@ -232,19 +281,20 @@ Faites les étapes **dans l'ordre** : chacune s'appuie sur la précédente.
 ### Étape 2 — Authentification
 
 - [x] **`AuthService`**
-  - `login(login, password)` appelle `POST /api/auth/login` et mémorise le jeton reçu dans un
-    `signal` **et** dans le `sessionStorage` (pour rester connecté si on recharge la page).
-  - `isLoggedIn` : un `computed` qui indique si un jeton est présent.
-  - `logout()` appelle `POST /api/auth/logout` puis oublie le jeton.
+    - `login(login, password)` appelle `POST /api/auth/login` et mémorise le jeton reçu dans un
+      `signal` **et** dans le `sessionStorage` (pour rester connecté si on recharge la page).
+    - `isLoggedIn` : un `computed` qui indique si un jeton est présent.
+    - `logout()` appelle `POST /api/auth/logout` puis oublie le jeton.
 - [x] **Page de connexion** : formulaire réactif (identifiant + mot de passe, obligatoires).
-  - En cas de succès → redirection vers `/caisse`.
-  - En cas d'échec (401) → message « Identifiant ou mot de passe incorrect ».
-  - Si le serveur ne répond pas → un message qui l'indique.
+    - En cas de succès → redirection vers `/caisse`.
+    - En cas d'échec (401) → message « Identifiant ou mot de passe incorrect ».
+    - Si le serveur ne répond pas → un message qui l'indique.
 - [x] **Guard** : `/caisse` n'est accessible qu'aux utilisateurs connectés, sinon redirection vers `/login`.
 - [x] **Intercepteur** : ajoute l'en-tête `Authorization: Bearer <jeton>` à chaque requête. Si une réponse
   est un **401** (hors login), il efface le jeton et renvoie vers `/login`.
 
-✅ **Validation** : impossible d'afficher `/caisse` sans se connecter ; avec `caisse` / `caisse` on arrive sur la caisse ;
+✅ **Validation** : impossible d'afficher `/caisse` sans se connecter ; avec `caisse` / `caisse` on arrive sur la
+caisse ;
 après un redémarrage du serveur, la première requête renvoie sur `/login`.
 
 > 💡 `NonNullableFormBuilder`, `Validators.required`, `CanActivateFn`, `router.createUrlTree(['/login'])`,
@@ -257,11 +307,11 @@ après un redémarrage du serveur, la première requête renvoie sur `/login`.
 - [x] La page caisse charge les produits dans un `signal` et les affiche **par catégorie**
   (Burgers, Paninis, Boissons, Desserts), à l'aide de `CATEGORIES`.
 - [x] Un composant **`ProductCard`** :
-  - entrées (`input()`) : le produit et le **stock disponible** ;
-  - sortie (`output()`) : émet le produit quand on clique dessus ;
-  - affiche l'icône, le nom, le prix et le stock.
-- [x] Un produit **hors stock** reste **visible** mais est **grisé**, porte la mention « Hors stock » et
-  **n'est pas cliquable**.
+    - entrées (`input()`) : le produit et le **stock disponible** ;
+    - sortie (`output()`) : émet le produit quand on clique dessus ;
+    - affiche l'icône, le nom, le prix et le stock.
+- [x] Un produit **hors stock** reste **visible** mais est **grisé**, porte la mention « Hors stock » et **n'est pas
+  cliquable**.
 
 ✅ **Validation** : les 15 produits s'affichent ; Veggie Burger, Panini Poulet-Pesto et Tiramisu sont
 visibles mais désactivés.
@@ -274,12 +324,12 @@ visibles mais désactivés.
 La note est construite **dans le navigateur** : rien n'est envoyé au serveur avant le paiement.
 
 - [x] **`NoteService`** (état partagé, avec des signals) :
-  - la liste des lignes de la note ;
-  - `total` : un `computed` ;
-  - ajouter un produit (cliquer deux fois sur le même produit donne **une** ligne de quantité 2) ;
-  - diminuer la quantité, supprimer une ligne, vider la note.
-- [x] Un composant **`NotePanel`** (le ticket) : chaque ligne avec son libellé, son prix, sa quantité
-  (boutons − et +), son sous-total et un bouton de suppression ; le total en bas.
+    - la liste des lignes de la note ;
+    - `total` : un `computed` ;
+    - ajouter un produit (cliquer deux fois sur le même produit donne **une** ligne de quantité 2) ;
+    - diminuer la quantité, supprimer une ligne, vider la note.
+- [x] Un composant **`NotePanel`** (le ticket) : chaque ligne avec son libellé, son prix, sa quantité (boutons − et +),
+  son sous-total et un bouton de suppression ; le total en bas.
 - [x] Le **stock affiché tient compte de la note** : si Cookie a un stock de 2 et que 2 cookies sont
   déjà dans la note, la carte Cookie affiche « Hors stock » et n'est plus cliquable. Le bouton « + »
   du ticket est désactivé dans ce cas.
@@ -296,10 +346,10 @@ pas mettre dans la note plus que le stock.
 
 - [x] Afficher les 2 formules (nom, composition, prix) au-dessus du catalogue.
 - [x] Un clic sur une formule ouvre un composant **`FormulaPicker`** (une fenêtre par-dessus la page) :
-  - choisir **un** produit de la catégorie principale (burger **ou** panini selon la formule),
-    **une** boisson et **un** dessert ;
-  - les produits indisponibles sont visibles mais non sélectionnables ;
-  - « Ajouter à la note » n'est actif que lorsque les 3 choix sont faits ; « Annuler » ferme la fenêtre.
+    - choisir **un** produit de la catégorie principale (burger **ou** panini selon la formule), **une** boisson et
+      **un** dessert ;
+    - les produits indisponibles sont visibles mais non sélectionnables ;
+    - « Ajouter à la note » n'est actif que lorsque les 3 choix sont faits ; « Annuler » ferme la fenêtre.
 - [x] Dans la note, une formule est **une ligne** : son nom, le détail des 3 produits choisis et son prix fixe.
 - [x] Les 3 produits d'une formule **comptent dans les stocks** réservés par la note.
 - [x] Une formule est désactivée si l'une de ses 3 catégories n'a plus aucun produit disponible.
@@ -316,9 +366,9 @@ les stocks affichés de ces 3 produits diminuent de 1.
 - [x] Convertir la note en `OrderRequest` (produits + formules, avec seulement les identifiants).
 - [x] Bouton **« Payer 40,00 € »**, désactivé si la note est vide ou si un paiement est en cours.
 - [x] Après un paiement réussi :
-  - afficher « Note n°X payée : Y € » ;
-  - **vider** la note ;
-  - **recharger** les produits (les stocks ont changé) et les totaux par jour.
+    - afficher « Note n°X payée : Y € » ;
+    - **vider** la note ;
+    - **recharger** les produits (les stocks ont changé) et les totaux par jour.
 - [x] En cas d'erreur (ex. **409** stock insuffisant) : afficher le `message` renvoyé par le serveur et
   recharger les produits.
 
@@ -349,7 +399,7 @@ le serveur (401).
 
 ## 5. Bonus
 
-- La page `/login` redirige vers `/caisse` si on est déjà connecté (un second guard).
+- [x] La page `/login` redirige vers `/caisse` si on est déjà connecté (un second guard).
 - La touche **Échap** ferme la fenêtre de choix de formule.
 - Le message de confirmation de paiement disparaît tout seul après quelques secondes.
 - Afficher le **ticket** de la dernière note payée (les `lines` renvoyées par `POST /api/orders`).
@@ -361,18 +411,18 @@ le serveur (401).
 
 ## 6. Auto-évaluation
 
-| Fonctionnalité | OK ? |
-|---|:---:|
-| Connexion `caisse` / `caisse`, message d'erreur sinon | ☐ |
-| `/caisse` inaccessible sans être connecté | ☐ |
-| Jeton envoyé automatiquement (intercepteur), 401 → retour au login | ☐ |
-| Produits affichés par catégorie avec prix et stock | ☐ |
-| Produit hors stock visible mais non sélectionnable | ☐ |
-| La note se construit en direct (quantités, suppression, total) | ☐ |
-| Le stock affiché tient compte de la note | ☐ |
-| Les 2 formules (plat + boisson + dessert) fonctionnent | ☐ |
-| Paiement en un clic, note vidée, stocks rechargés | ☐ |
-| Erreur 409 affichée proprement | ☐ |
-| Total de chaque jour + total du jour visibles et à jour | ☐ |
-| Déconnexion | ☐ |
-| Code découpé en composants / services ; montants manipulés en centimes (entiers) | ☐ |
+| Fonctionnalité                                                                   | OK ? |
+|----------------------------------------------------------------------------------|:----:|
+| Connexion `caisse` / `caisse`, message d'erreur sinon                            |  ☐  |
+| `/caisse` inaccessible sans être connecté                                        |  ☐  |
+| Jeton envoyé automatiquement (intercepteur), 401 → retour au login               |  ☐  |
+| Produits affichés par catégorie avec prix et stock                               |  ☐  |
+| Produit hors stock visible mais non sélectionnable                               |  ☐  |
+| La note se construit en direct (quantités, suppression, total)                   |  ☐  |
+| Le stock affiché tient compte de la note                                         |  ☐  |
+| Les 2 formules (plat + boisson + dessert) fonctionnent                           |  ☐  |
+| Paiement en un clic, note vidée, stocks rechargés                                |  ☐  |
+| Erreur 409 affichée proprement                                                   |  ☐  |
+| Total de chaque jour + total du jour visibles et à jour                          |  ☐  |
+| Déconnexion                                                                      |  ☐  |
+| Code découpé en composants / services ; montants manipulés en centimes (entiers) |  ☐  |
