@@ -20,7 +20,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     catchError((err: HttpErrorResponse) => {
       if (err.status === 401 && req.url !== `${API_URL}/auth/login`) {
         authService.clearToken();
-        router.navigateByUrl('/login');
+        void router.navigateByUrl('/login');
       }
       return throwError(() => err);
     }),

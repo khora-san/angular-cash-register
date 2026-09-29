@@ -11,3 +11,10 @@ section h2 {
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 1rem;
 }
+
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 1.5rem;
+    align-items: start;
+}

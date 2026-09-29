@@ -1,0 +1,32 @@
+<div class="card note-panel">
+    <div class="header">
+        <h2>🧾 Note en cours</h2>
+        <button class="btn btn-ghost" (click)="noteService.clear()">Vider</button>
+    </div>
+    <!-- Liste des lignes -->
+    @for (line of noteService.lines(); track line.product.id) {
+        <div class="line">
+            <div class="info">
+                <span class="name">{{ line.product.name }}</span>
+                <span class="unit-price">{{ line.product.price | euros }} l'unité</span>
+            </div>
+            <button class="btn-icon" (click)="noteService.decrease(line.product)">−</button>
+            <span class="quantity">{{ line.quantity }}</span>
+            <button class="btn-icon" [disabled]="line.product.stock <= line.quantity"
+                    (click)="noteService.add(line.product)">+
+            </button>
+            <span class="subtotal">{{ line.product.price * line.quantity | euros }}</span>
+            <button class="btn-icon" (click)="noteService.remove(line.product)">✕</button>
+        </div>
+    }
+    <!-- Total ou "note vide" -->
+    @if (noteService.lines().length === 0) {
+        <p class="empty">La note est vide.</p>
+    } @else {
+        <div class="total">
+            <span>Total</span>
+            <span>{{ noteService.total() | euros }}</span>
+        </div>
+    }
+
+</div>

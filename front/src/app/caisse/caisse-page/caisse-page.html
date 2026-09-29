@@ -1,10 +1,17 @@
-@for (category of categories; track category.code) {
-    <section>
-        <h2>{{ category.icon }} {{ category.label }}</h2>
-        <div class="grid">
-            @for (product of productsIn(category.code); track product.id) {
-                <app-product-card [product]="product" [availableStock]="product.stock"/>
-            }
-        </div>
-    </section>
-}
+<div class="layout">
+    <div class="catalog">
+        @for (category of categories; track category.code) {
+            <section>
+                <h2>{{ category.icon }} {{ category.label }}</h2>
+                <div class="grid">
+                    @for (product of productsIn(category.code); track product.id) {
+                        <app-product-card [product]="product" [availableStock]="availableStock(product)"
+                                          (selected)="noteService.add($event)"/>
+                    }
+                </div>
+            </section>
+        }
+    </div>
+
+    <app-note-panel/>
+</div>
